@@ -31,7 +31,19 @@ The goal is to preserve the learning path and engineering techniques from the co
 
 - Original notebooks present: `notebooks_original/week6`, `notebooks_original/week7`, `notebooks_original/week8`.
 - Adapted folders initialized: `week6/`, `week7/`, `week8/`.
-- Adapted notebooks and code: not started yet (folders are currently empty).
+- Adapted notebooks and code: `week6/day1.ipynb` exists and Day 1 is complete.
+
+## Current Progress
+
+### Week 6
+- Day 1: Completed
+  - Adapted pricing dataset workflow to time-series dataset
+  - Using a single primary time series (synthetic or sample)
+  - Established pipeline: load → inspect → clean → visualize → sample → split
+  - Deferred multi-series (M4) work to later days
+
+### Next Step
+- Week 6 Day 2: Feature engineering / representation for time series
 
 ## Initial Forecasting Task
 
