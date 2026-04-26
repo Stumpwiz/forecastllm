@@ -1,0 +1,29 @@
+# PyCharm / JetBrains
+.idea/
+
+# PyCharm excluded folders (from .idea/forecastllm.iml)
+.venv/
+models/
+notebooks_original/
+
+# Python cache/build artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS noise
+.DS_Store
+Thumbs.db
