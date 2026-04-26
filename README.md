@@ -29,21 +29,48 @@ The goal is to preserve the learning path and engineering techniques from the co
 
 ## Current Status (as of 2026-04-26)
 
-- Original notebooks present: `notebooks_original/week6`, `notebooks_original/week7`, `notebooks_original/week8`.
-- Adapted folders initialized: `week6/`, `week7/`, `week8/`.
-- Adapted notebooks and code: `week6/day1.ipynb` exists and Day 1 is complete.
+- Week 6 adapted notebooks are complete: `day1.ipynb` through `day5.ipynb`.
+- Week 7 and Week 8 adapted folders are initialized but not yet adapted.
+- Original notebooks remain present under `notebooks_original/week6`, `notebooks_original/week7`, and `notebooks_original/week8`.
+
 
 ## Current Progress
 
-### Week 6
-- Day 1: Completed
-  - Adapted pricing dataset workflow to time-series dataset
-  - Using a single primary time series (synthetic or sample)
-  - Established pipeline: load → inspect → clean → visualize → sample → split
-  - Deferred multi-series (M4) work to later days
+### Week 6: Complete
+
+- Day 1: Built forecasting dataset workflow
+  - Loaded/normalized a single primary time series
+  - Established load -> inspect -> clean -> visualize -> sample -> split pipeline
+
+- Day 2: Built supervised forecasting representation
+  - Created lag features
+  - Added calendar features
+  - Established chronological train/test split
+
+- Day 3: Added baselines and evaluation
+  - Naive forecast
+  - Seasonal naive forecast
+  - MAE and sMAPE
+
+- Day 4: Added first learned forecasting model
+  - Linear regression using lag/calendar features
+  - Explicit one-step-ahead evaluation protocol
+  - Leakage sanity checks
+  - Exported evaluated test slice
+
+- Day 5: Compared forecasting models
+  - Linear regression
+  - Ridge regression
+  - Random forest
+  - Baseline comparison table
+  - Exported evaluated test slice
+
+Note: Week 6 currently uses a single daily sample/synthetic time series; real M4 and multi-series work is deferred.
 
 ### Next Step
-- Week 6 Day 2: Feature engineering / representation for time series
+
+- Week 7: adapt the next course phase while preserving Ed Donner's structure, using the Week 6 forecasting pipeline as the foundation.
+
 
 ## Initial Forecasting Task
 
