@@ -27,10 +27,11 @@ The goal is to preserve the learning path and engineering techniques from the co
 - `data/`: local datasets and intermediate artifacts for forecasting experiments.
 - `pyproject.toml`: project dependencies.
 
-## Current Status (as of 2026-04-26)
+## Current Status (as of 2026-04-27)
 
 - Week 6 adapted notebooks are complete: `day1.ipynb` through `day5.ipynb`.
-- Week 7 and Week 8 adapted folders are initialized but not yet adapted.
+- Week 7 Day 1 is adapted in `week7/day1.ipynb` and runs end-to-end.
+- Week 7 Day 2+ and Week 8 are not yet adapted.
 - Original notebooks remain present under `notebooks_original/week6`, `notebooks_original/week7`, and `notebooks_original/week8`.
 
 
@@ -67,9 +68,19 @@ The goal is to preserve the learning path and engineering techniques from the co
 
 Note: Week 6 currently uses a single daily sample/synthetic time series; real M4 and multi-series work is deferred.
 
+### Week 7: In Progress
+
+- Day 1: LoRA/QLoRA setup adapted to forecasting prompts
+  - Reuses Week 6 supervised features (`lag_1`, `lag_2`, `lag_3`, `lag_7`, `day_of_week`, `month`)
+  - Builds instruction-style forecasting prompt/completion records
+  - Includes full-precision, 8-bit, and 4-bit model loading paths
+  - Includes optional LoRA adapter attach path via `FINETUNED_MODEL`
+  - Includes LoRA parameter-size estimation walkthrough
+  - End-to-end run succeeded with some deprecation warnings (non-blocking)
+
 ### Next Step
 
-- Week 7: adapt the next course phase while preserving Ed Donner's structure, using the Week 6 forecasting pipeline as the foundation.
+- Adapt `notebooks_original/week7/day2.ipynb` into `week7/day2.ipynb`, preserving Day 2 structure while keeping Week 6 forecasting data protocol.
 
 
 ## Initial Forecasting Task
@@ -127,12 +138,24 @@ pip install -e .
 jupyter lab
 ```
 
+## Auth and Secrets
+
+- `week7/day1.ipynb` does not require a `.env` file for default execution.
+- For public models (current default: `TinyLlama/TinyLlama-1.1B-Chat-v1.0`), no Hugging Face token is typically needed.
+- If using gated/private Hugging Face models or private adapters, authenticate with:
+  - `huggingface-cli login`
+  - or set `HF_TOKEN` in your shell/session
+- Optional environment variables currently used:
+  - `BASE_MODEL`
+  - `FINETUNED_MODEL`
+  - `HF_TOKEN`
+
 ## Practical Next Steps
 
-1. Copy/adapt `notebooks_original/week6/day1.ipynb` into `week6/day1.ipynb`.
-2. Define your first forecasting target/task (for example: horizon, granularity, metric).
-3. Add minimal helper modules in `week6/` as they emerge from the notebook work.
-4. Repeat daily through week 8, preserving the same progression as the course.
+1. Adapt `notebooks_original/week7/day2.ipynb` into `week7/day2.ipynb`.
+2. Reuse the Week 6 forecasting protocol and feature definitions in Day 2 where applicable.
+3. Keep Day 2 runnable end-to-end before moving to Day 3.
+4. Continue sequentially through Week 7 and Week 8, preserving the original course order.
 
 ## Notes
 
