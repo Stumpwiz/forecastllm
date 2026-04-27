@@ -31,7 +31,8 @@ The goal is to preserve the learning path and engineering techniques from the co
 
 - Week 6 adapted notebooks are complete: `day1.ipynb` through `day5.ipynb`.
 - Week 7 Day 1 is adapted in `week7/day1.ipynb` and runs end-to-end.
-- Week 7 Day 2+ and Week 8 are not yet adapted.
+- Week 7 Day 2 is adapted in `week7/day2.ipynb` and runs end-to-end.
+- Week 7 Day 3+ and Week 8 are not yet adapted.
 - Original notebooks remain present under `notebooks_original/week6`, `notebooks_original/week7`, and `notebooks_original/week8`.
 
 
@@ -77,10 +78,16 @@ Note: Week 6 currently uses a single daily sample/synthetic time series; real M4
   - Includes optional LoRA adapter attach path via `FINETUNED_MODEL`
   - Includes LoRA parameter-size estimation walkthrough
   - End-to-end run succeeded with some deprecation warnings (non-blocking)
+- Day 2: Prompt-dataset and tokenizer-prep flow adapted to forecasting
+  - Builds forecasting prompt/completion records from Week 6-style lag/calendar features
+  - Computes token-length distributions and selects truncation cutoff
+  - Produces `DatasetDict` for train/validation/test
+  - Includes optional Hugging Face dataset push via `HF_USERNAME` and `HF_TOKEN`
+  - End-to-end run succeeded
 
 ### Next Step
 
-- Adapt `notebooks_original/week7/day2.ipynb` into `week7/day2.ipynb`, preserving Day 2 structure while keeping Week 6 forecasting data protocol.
+- Adapt `notebooks_original/week7/day3.ipynb` into `week7/day3.ipynb`, preserving Day 3 training structure while using forecasting prompt datasets from Week 7 Day 2.
 
 
 ## Initial Forecasting Task
@@ -140,7 +147,7 @@ jupyter lab
 
 ## Auth and Secrets
 
-- `week7/day1.ipynb` does not require a `.env` file for default execution.
+- `week7/day1.ipynb` and `week7/day2.ipynb` do not require a `.env` file for default execution.
 - For public models (current default: `TinyLlama/TinyLlama-1.1B-Chat-v1.0`), no Hugging Face token is typically needed.
 - If using gated/private Hugging Face models or private adapters, authenticate with:
   - `huggingface-cli login`
@@ -152,9 +159,9 @@ jupyter lab
 
 ## Practical Next Steps
 
-1. Adapt `notebooks_original/week7/day2.ipynb` into `week7/day2.ipynb`.
-2. Reuse the Week 6 forecasting protocol and feature definitions in Day 2 where applicable.
-3. Keep Day 2 runnable end-to-end before moving to Day 3.
+1. Adapt `notebooks_original/week7/day3.ipynb` into `week7/day3.ipynb`.
+2. Reuse Week 7 Day 2 prompt datasets and tokenization/truncation decisions.
+3. Keep Day 3 runnable end-to-end before moving to Day 4.
 4. Continue sequentially through Week 7 and Week 8, preserving the original course order.
 
 ## Notes
