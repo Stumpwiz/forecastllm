@@ -10,11 +10,11 @@ Week 6 is complete.
 
 - Day 1: dataset curation
 - Day 2: supervised lag-feature representation
-- Day 3: naive and seasonal-naive baselines
+- Day 3: naive and daily seasonal-naive baselines
 - Day 4: first learned model with LinearRegression
 - Day 5: model comparison with LinearRegression, Ridge, and RandomForestRegressor
 
-The current forecasting protocol is one-step-ahead rolling evaluation on a single daily sample/synthetic series.
+The current forecasting protocol is one-step-ahead rolling evaluation on one selected local M4 hourly series.
 
 Week 7 is now started.
 
@@ -29,11 +29,23 @@ Week 7 is now started.
 - Original notebooks remain untouched under `notebooks_original/`.
 - Adapted notebooks live under `week6/`, `week7/`, and `week8/`.
 - Current dataset uses columns `timestamp` and `value`.
-- Supervised features include `lag_1`, `lag_2`, `lag_3`, `lag_7`, `day_of_week`, and `month`.
+- Project default data source is local M4 hourly data from `FORECAST_DATA_PATH` (or the loader default path).
+- Synthetic series is retained only as an explicit fallback path.
+- Supervised features preserve week6 protocol and add hourly seasonality:
+  - core: `lag_1`, `lag_2`, `lag_3`, `lag_7`, `lag_24`, `day_of_week`, `month`
+  - optional: `lag_168` when selected series is long enough
+- Lag interpretation:
+  - `lag_1`, `lag_2`, `lag_3`, `lag_7` are short-memory lags
+  - `lag_24` is the daily seasonal lag for hourly data
+  - `lag_168` is the weekly seasonal lag for hourly data
+- Baseline convention:
+  - naive baseline = `lag_1`
+  - daily seasonal naive baseline = `lag_24`
+  - weekly seasonal naive baseline = `lag_168` only if that lag is present
 - Metrics are MAE and sMAPE.
 - Chronological splitting is used; no shuffling.
 - Day 4 and Day 5 include leakage sanity checks.
-- Real M4/multi-series work is deferred.
+- Multi-series work is deferred.
 - Week 7 Day 1/2 use local env vars (`BASE_MODEL`, `FINETUNED_MODEL`, `HF_TOKEN`, optional `HF_USERNAME`) and do not require Colab secrets.
 - A `.env` file is optional; use `huggingface-cli login` or set `HF_TOKEN` only when accessing gated/private Hugging Face assets.
 

@@ -27,12 +27,13 @@ The goal is to preserve the learning path and engineering techniques from the co
 - `data/`: local datasets and intermediate artifacts for forecasting experiments.
 - `pyproject.toml`: project dependencies.
 
-## Current Status (as of 2026-04-27)
+## Current Status (as of 2026-04-30)
 
 - Week 6 adapted notebooks are complete: `day1.ipynb` through `day5.ipynb`.
 - Week 7 Day 1 is adapted in `week7/day1.ipynb` and runs end-to-end.
 - Week 7 Day 2 is adapted in `week7/day2.ipynb` and runs end-to-end.
-- Week 7 Day 3+ and Week 8 are not yet adapted.
+- Week 7 Day 3 and Day 4 are adapted together in `week7/day3 and 4.ipynb`.
+- Week 8 is not yet adapted.
 - Original notebooks remain present under `notebooks_original/week6`, `notebooks_original/week7`, and `notebooks_original/week8`.
 
 
@@ -67,19 +68,19 @@ The goal is to preserve the learning path and engineering techniques from the co
   - Baseline comparison table
   - Exported evaluated test slice
 
-Note: Week 6 currently uses a single daily sample/synthetic time series; real M4 and multi-series work is deferred.
+Note: Week 6 now defaults to one selected **local M4 hourly** series via `FORECAST_DATA_PATH` (or a built-in default path). Synthetic data is retained only as an explicit fallback path.
 
 ### Week 7: In Progress
 
 - Day 1: LoRA/QLoRA setup adapted to forecasting prompts
-  - Reuses Week 6 supervised features (`lag_1`, `lag_2`, `lag_3`, `lag_7`, `day_of_week`, `month`)
+  - Reuses Week 6-style supervised features with hourly seasonality (`lag_1`, `lag_2`, `lag_3`, `lag_7`, `lag_24`, `day_of_week`, `month`)
   - Builds instruction-style forecasting prompt/completion records
   - Includes full-precision, 8-bit, and 4-bit model loading paths
   - Includes optional LoRA adapter attach path via `FINETUNED_MODEL`
   - Includes LoRA parameter-size estimation walkthrough
   - End-to-end run succeeded with some deprecation warnings (non-blocking)
 - Day 2: Prompt-dataset and tokenizer-prep flow adapted to forecasting
-  - Builds forecasting prompt/completion records from Week 6-style lag/calendar features
+  - Builds forecasting prompt/completion records from Week 6-style lag/calendar features with hourly `lag_24`
   - Computes token-length distributions and selects truncation cutoff
   - Produces `DatasetDict` for train/validation/test
   - Includes optional Hugging Face dataset push via `HF_USERNAME` and `HF_TOKEN`
@@ -87,16 +88,25 @@ Note: Week 6 currently uses a single daily sample/synthetic time series; real M4
 
 ### Next Step
 
-- Adapt `notebooks_original/week7/day3.ipynb` into `week7/day3.ipynb`, preserving Day 3 training structure while using forecasting prompt datasets from Week 7 Day 2.
+- Continue Week 7/8 adaptation after the combined Day 3/4 notebook.
 
 
-## Initial Forecasting Task
+## Forecasting Data Standard
 
-- Dataset: M4 (daily subset)
-- Initial scope: single time series
-- Forecast horizon: 7 steps ahead
+- Dataset default: local M4 hourly processed series
+  - default path: `/home/geo/Projects/Python/forecastllm/data/m4/processed/hourly_longest_series.csv`
+  - configurable via `FORECAST_DATA_PATH` in `.env`
+- Initial scope: one selected M4 hourly series (multi-series deferred)
+- Evaluation scope: one-step-ahead forecasts
 - Metrics: MAE, sMAPE
-- Goal: replicate Week 6 pipeline using time-series inputs instead of text
+- Baseline convention:
+  - naive: `lag_1`
+  - daily seasonal naive (hourly cadence): `lag_24`
+  - weekly seasonal naive: `lag_168` (only when that lag is included)
+- Lag interpretation:
+  - `lag_1`, `lag_2`, `lag_3`, `lag_7` are short-memory lags
+  - `lag_24` is the daily seasonal lag for hourly data
+  - `lag_168` is the weekly seasonal lag for hourly data
 
 ## Day-by-Day Adaptation Workflow
 

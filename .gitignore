@@ -5,6 +5,17 @@
 .venv/
 models/
 notebooks_original/
+.env
+
+# Local forecasting data
+data/m4/raw/
+data/m4/interim/
+data/m4/processed/
+data/m4/*.zip
+data/m4/*.tar.gz
+data/m4/*.parquet
+data/m4/*.pkl
+data/m4/*.csv
 
 # Python cache/build artifacts
 __pycache__/
