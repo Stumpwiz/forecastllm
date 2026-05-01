@@ -4,18 +4,31 @@
 # PyCharm excluded folders (from .idea/forecastllm.iml)
 .venv/
 models/
+__pycache__/
+.pyc
 notebooks_original/
 .env
+
+# Logs
+*.log
+logs/
+
+# Weights & Biases
+wandb/
+
+# Notebook run artifacts
+week7/run/
+week7/**/run/
 
 # Local forecasting data
 data/m4/raw/
 data/m4/interim/
 data/m4/processed/
-data/m4/*.zip
-data/m4/*.tar.gz
-data/m4/*.parquet
-data/m4/*.pkl
-data/m4/*.csv
+data/**/*.csv
+data/**/*.parquet
+data/**/*.pkl
+data/**/*.zip
+data/**/*.tar.gz
 
 # Python cache/build artifacts
 __pycache__/

@@ -1,19 +1,21 @@
 {
   "dataset_path": "/home/geo/Projects/Python/forecastllm/data/m4/processed/hourly_longest_series.csv",
-  "rows_total": 953,
+  "rows_total": 792,
   "split_ratio": {
     "train": 0.7,
     "val": 0.15,
     "test": 0.15
   },
-  "train_rows": 667,
-  "val_rows": 143,
-  "test_rows": 143,
+  "train_rows": 554,
+  "val_rows": 119,
+  "test_rows": 119,
   "feature_columns": [
     "lag_1",
     "lag_2",
     "lag_3",
     "lag_7",
+    "lag_24",
+    "lag_168",
     "day_of_week",
     "month"
   ],
