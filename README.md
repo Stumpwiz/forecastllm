@@ -27,13 +27,11 @@ The goal is to preserve the learning path and engineering techniques from the co
 - `data/`: local datasets and intermediate artifacts for forecasting experiments.
 - `pyproject.toml`: project dependencies.
 
-## Current Status (as of 2026-04-30)
+## Current Status (as of 2026-05-02)
 
 - Week 6 adapted notebooks are complete: `day1.ipynb` through `day5.ipynb`.
-- Week 7 Day 1 is adapted in `week7/day1.ipynb` and runs end-to-end.
-- Week 7 Day 2 is adapted in `week7/day2.ipynb` and runs end-to-end.
-- Week 7 Day 3 and Day 4 are adapted together in `week7/day3 and 4.ipynb`.
-- Week 8 is not yet adapted.
+- Week 7 adapted notebooks are complete and runnable (`day1.ipynb`, `day2.ipynb`, `day3 and 4.ipynb`).
+- Week 8 Day 1 is now pivoted to weekly gasoline prices for the pricing-style agentic workflow.
 - Original notebooks remain present under `notebooks_original/week6`, `notebooks_original/week7`, and `notebooks_original/week8`.
 
 
@@ -70,7 +68,7 @@ The goal is to preserve the learning path and engineering techniques from the co
 
 Note: Week 6 now defaults to one selected **local M4 hourly** series via `FORECAST_DATA_PATH` (or a built-in default path). Synthetic data is retained only as an explicit fallback path.
 
-### Week 7: In Progress
+### Week 7: Complete
 
 - Day 1: LoRA/QLoRA setup adapted to forecasting prompts
   - Reuses Week 6-style supervised features with hourly seasonality (`lag_1`, `lag_2`, `lag_3`, `lag_7`, `lag_24`, `day_of_week`, `month`)
@@ -86,9 +84,15 @@ Note: Week 6 now defaults to one selected **local M4 hourly** series via `FORECA
   - Includes optional Hugging Face dataset push via `HF_USERNAME` and `HF_TOKEN`
   - End-to-end run succeeded
 
+### Week 8: In Progress (Gasoline Domain Pivot)
+
+- Week 8 Day 1 now uses weekly retail gasoline prices (FRED/EIA `GASREGW`) as the domain.
+- Week 8 Day 1 keeps the forecasting schema (`ForecastCase`) and introduces gasoline-specific metadata.
+- Data ingestion is local CSV first via `week8/gasoline_loader.py`; API refresh is deferred.
+
 ### Next Step
 
-- Continue Week 7/8 adaptation after the combined Day 3/4 notebook.
+- Continue Week 8 Day 2-5, building scanner/forecaster/evaluator/reporter orchestration around gasoline price decisions.
 
 
 ## Forecasting Data Standard
@@ -96,6 +100,8 @@ Note: Week 6 now defaults to one selected **local M4 hourly** series via `FORECA
 - Dataset default: local M4 hourly processed series
   - default path: `/home/geo/Projects/Python/forecastllm/data/m4/processed/hourly_longest_series.csv`
   - configurable via `FORECAST_DATA_PATH` in `.env`
+- Week 8 domain dataset: local weekly gasoline CSV (recommended FRED/EIA `GASREGW`)
+  - configurable via `GASOLINE_DATA_PATH` in `.env`
 - Initial scope: one selected M4 hourly series (multi-series deferred)
 - Evaluation scope: one-step-ahead forecasts
 - Metrics: MAE, sMAPE

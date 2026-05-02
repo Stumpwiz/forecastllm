@@ -16,13 +16,17 @@ Week 6 is complete.
 
 The current forecasting protocol is one-step-ahead rolling evaluation on one selected local M4 hourly series.
 
-Week 7 is now started.
+Week 7 is complete.
 
 - Day 1 (`week7/day1.ipynb`) is adapted and runnable end-to-end.
-- Day 1 adapts LoRA/QLoRA model-loading workflow to forecasting prompts derived from Week 6 features.
-- End-to-end run completed with non-blocking deprecation warnings.
 - Day 2 (`week7/day2.ipynb`) is adapted and runnable end-to-end.
-- Day 2 adapts prompt dataset creation/token-length analysis/truncation to forecasting records and prepares a `DatasetDict` for training.
+- Day 3/4 (`week7/day3 and 4.ipynb`) is adapted and runnable end-to-end.
+
+Week 8 adaptation has started with a domain pivot to gasoline pricing-style forecasting.
+
+- `week8/day1.ipynb` now uses weekly gasoline prices (FRED/EIA `GASREGW`) for the agentic setup.
+- Loader is local-first via `week8/gasoline_loader.py` with `GASOLINE_DATA_PATH` support.
+- Day 2-5 remain scaffold notebooks.
 
 ## Important Design Choices
 
@@ -30,6 +34,7 @@ Week 7 is now started.
 - Adapted notebooks live under `week6/`, `week7/`, and `week8/`.
 - Current dataset uses columns `timestamp` and `value`.
 - Project default data source is local M4 hourly data from `FORECAST_DATA_PATH` (or the loader default path).
+- Week 8 domain data source is local weekly gasoline CSV via `GASOLINE_DATA_PATH`.
 - Synthetic series is retained only as an explicit fallback path.
 - Supervised features preserve week6 protocol and add hourly seasonality:
   - core: `lag_1`, `lag_2`, `lag_3`, `lag_7`, `lag_24`, `day_of_week`, `month`
@@ -51,11 +56,11 @@ Week 7 is now started.
 
 ## Next Step
 
-Adapt `notebooks_original/week7/day3.ipynb` into `week7/day3.ipynb`, preserving the Day 3 instructional structure while replacing pricing-specific logic with forecasting equivalents.
+Continue Week 8 Day 2-5 by implementing scanner -> forecaster -> evaluator -> reporter/planner workflow over gasoline price forecasts.
 
 ## Suggested Session Start Checklist
 
-1. Open and review `notebooks_original/week7/day3.ipynb`.
-2. Create/update `week7/day3.ipynb` scaffold.
-3. Reuse Week 7 Day 2 artifacts (prompt/completion schema, cutoff logic, dataset splits).
+1. Open and review `notebooks_original/week8/day1.ipynb` through `day5.ipynb` and helper modules.
+2. Port one component at a time into `week8/` following pricing -> forecasting mapping.
+3. Reuse Week 6/7 forecasting data contracts (`timestamp`, `value`, chronological split, MAE/sMAPE).
 4. Keep adaptations incremental and runnable cell-by-cell.
