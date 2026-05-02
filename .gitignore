@@ -19,6 +19,8 @@ wandb/
 # Notebook run artifacts
 week7/run/
 week7/**/run/
+week8/run/
+week8/**/run/
 
 # Local forecasting data
 data/m4/raw/
