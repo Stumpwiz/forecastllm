@@ -21,11 +21,13 @@ week7/run/
 week7/**/run/
 week8/run/
 week8/**/run/
+week6/week6/exports/
 
 # Local forecasting data
 data/m4/raw/
 data/m4/interim/
 data/m4/processed/
+data/gasoline/
 data/**/*.csv
 data/**/*.parquet
 data/**/*.pkl
@@ -49,6 +51,14 @@ dist/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Training/checkpoint outputs
+week7/forecastllm-*/
+**/checkpoint-*/
+*.safetensors
+*.pt
+*.pth
+*.bin
 
 # OS noise
 .DS_Store
