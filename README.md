@@ -67,5 +67,5 @@ Run in order:
 This repository is a community learning adaptation of Ed Donner's course material.
 
 - Original instructional material belongs to Ed Donner and the original course repository.
-- `notebooks_original/` is used as local reference material in this workspace and is not modified.
+- `notebooks_original/` was used as local reference material in this workspace and is not included in the repo.
 
